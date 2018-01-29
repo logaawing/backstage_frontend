@@ -83,20 +83,18 @@
         }
       },
       methods:{
-
           submitForm(formName){
-            console.log(this.userInfo.username);
-            console.log(this.userInfo.password);
-            this.$http.get('http://localhost:8081/login/?uname=logaawing&upwd=14').then(function(response){
-              console.log(response);
-              console.log(response.data)
-              if(response.errno === ERR_OK){
-                this.$router.push("/main");
+            var username = this.userInfo.username;
+            var password = this.userInfo.password;
+            var url = "http://localhost:8081/user/login";
+            this.$http.post(url,{uname:username,upwd:password},{emulateJSON: true,credentials: true}).then(function(res){
+              var data = res.data;
+              if(data.errno === ERR_OK) {
+                this.$router.push('/main');
               }else{
-                console.log("错误");
+                alert(data.msg);
               }
             })
-            // this.$router.push("/main");
           }
       }
     }

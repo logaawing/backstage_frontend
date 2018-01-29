@@ -10,7 +10,7 @@
             <router-link to="/noFound"><el-menu-item index="1-2">修改订单</el-menu-item></router-link>
         </el-submenu>
         <el-submenu index="2">
-          <template slot="title"><i class="el-icon-setting"></i>用户管理</template>
+          <template slot="title"><i class="el-icon -setting"></i>用户管理</template>
           <el-menu-item-group>
             <template slot="title">分组一</template>
             <el-menu-item index="2-1">选项1</el-menu-item>
@@ -64,6 +64,17 @@
         components:{
           'v-header': head,
           'v-footer': foot
+        },
+        created() {
+          var url = 'http://localhost:8081/user/session';
+          this.$http.get(url,{credentials: true}).then(function(data){
+            console.log("1:"+data.data);
+            if(data.data){
+              console.log(data.data);
+            }else{
+              console.log('没有登录哦');
+            }
+          })
         }
     }
 </script>
