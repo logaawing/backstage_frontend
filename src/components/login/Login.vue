@@ -92,7 +92,10 @@
               if(data.errno === ERR_OK) {
                 this.$router.push('/main');
               }else{
-                alert(data.msg);
+                this.$message({
+                  message: data.msg,
+                  type: 'warning'
+                });
               }
             })
           }
